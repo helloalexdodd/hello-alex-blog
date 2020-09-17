@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#home'
   get 'about', to: 'pages#about'
-  resources :articles, only: [:show, :index, :new, :create, :edit, :update]
+  # since we are using every route, we can remove the only specification
+  # resources :articles, only: [:show, :index, :new, :create, :edit, :update, :destroy]
+  resources :articles
 end

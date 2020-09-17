@@ -1,11 +1,13 @@
 <h1>Showing All Articles</h1>
-
-<ul>
+<ul style="list-style: none;">
   <% @articles.each do |article| %>
-  <li>
+  <li style="border-bottom: 2px solid black; padding: 10px;">
     <p><%= article.title %></p>
     <p><%= article.description %></p>
-    <p>Placeholder</p>
+    <%= link_to 'Show', article_path(article) %>
+    <%= link_to 'Edit', edit_article_path(article) %>
+    <%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: " Are you sure?" } %>
   </li>
   <% end %>
 </ul>
+<%=  link_to "Create New Article", new_article_path %>
