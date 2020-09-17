@@ -1,16 +1,27 @@
-<%= form_with(model: @article, local: true) do |f| %>
-  <div>
-    <div>
-      <%= f.label :title %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= render 'shared/errors' %>
+      <%= form_with(model: @article, class: "shadow p-5 mb-3 bg-secondary rounded", local: true) do |f| %>
+      <div class="form-group row">
+        <%= f.label :title, class: "col-2 col-form-control text-light" %>
+        <div class="col-10">
+          <%= f.text_field :title, class: "form-control shadow rounded", placeholder: "Title of article"%>
+        </div>
+      </div>
+      <div class="form-group row">
+          <%= f.label :description, class: "col-2 col-form-control text-light" %>
+        <div class="col-10">
+          <%= f.text_area :description, rows: 10, class: "form-control shadow rounded", placeholder: "Description of article"%>
+        </div>
+      </div>
+      <div class="form-group row justify-content-center">
+        <%= f.submit class: "btn btn-outline-light"%>
+      </div>
+      <div class="form-group row justify-content-center">
+        <%= link_to '[ Cancel Return to Articles Listing ]', articles_path, class: "text-info" %>
+      </div>
+      <% end %>
     </div>
-    <%= f.text_field :title %>
   </div>
-  <div>
-    <div>
-      <%= f.label :description %>
-    </div>
-    <%= f.text_area :description %>
-  </div>
-  <%= f.submit %>
-<% end %>
- 
+</div>
