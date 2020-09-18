@@ -1,0 +1,24 @@
+<h1 class="text-center mt-4">Hello Alex Bloggers</h1>
+<% @users.each do |user| %>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-8">
+        <div class="card text-center shadow my-4 rounded">
+          <div class="card-header font-italic">
+            <%# rails will know you mean user_path(user) %>
+            <h2><%= link_to user.username, user %></h2>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-success"><%= link_to gravatar_for(user, size: 150), user %></h5>
+            <p class="card-text"><%= pluralize(user.articles.count, "article") %></p>
+            <%= link_to 'View Profile', user, class:  "btn btn-outline-success" %>
+            <%= link_to 'Edit Profile', edit_user_path(user), class: "btn btn-outline-primary" %>
+          </div>
+          <div class="card-footer text-muted">
+            <small>Joined <%= time_ago_in_words user.created_at %> ago, </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
