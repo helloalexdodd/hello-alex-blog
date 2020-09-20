@@ -13,17 +13,29 @@
           Articles
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to "Create New Article", new_article_path, class: "dropdown-item" %>
+          <% if logged_in? %>
+            <%= link_to "Create New Article", new_article_path, class: "dropdown-item" %>
+          <% end %>
           <%= link_to "View Articles", articles_path, class: "dropdown-item" %>
-          <%# <div class="dropdown-divider"></div> %>
         </div>
       </li>
       <% if logged_in? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Profile [<%= current_user.username %>]
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "View your profile", user_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Edit your profile", edit_user_path(current_user), class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Delete profile", user_path(current_user), class: "dropdown-item text-danger", method: :delete, data: { confirm: "Are you sure?" } %>
+          </div>
+        </li>
         <li class="nav-item">
           <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Log out', login_path, class: "nav-link", method: :delete %>
+          <%= link_to 'Log out', logout_path, class: "nav-link", method: :delete %>
         </li>
       <% else %>
         <li class="nav-item">
@@ -33,7 +45,7 @@
           <%= link_to 'Sign up', signup_path, class: "nav-link" %>
         </li>
       <% end %>
-    </ul>
+      </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
